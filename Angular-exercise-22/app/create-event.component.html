@@ -1,0 +1,38 @@
+<div>
+  <form [formGroup]="eventForm" (ngSubmit)="saveEvent(eventForm.value)" novalidate>
+    <div class="form-group" [ngClass]="{'error':validateForm()}">
+      <label for="event-name">Event Name: </label>
+      <em>Required</em>
+      <input formControlName="name" id="event-name" type="text"/>
+    </div>
+    <div class="form-group" [ngClass]="{'error':validateForm()}">
+      <label for="date">Date: </label>
+      <em>Required</em>
+      <input formControlName="date" id="date" type="text"/>
+    </div>
+    <div class="form-group" [ngClass]="{'error':validateForm()}">
+      <label for="time">Time: </label>
+      <em>Required</em>
+      <input formControlName="time" id="time" type="text"/>
+    </div>
+    <div formGroupName="location">
+      <div class="form-group" [ngClass]="{'error':!validateForm()}">
+        <label for="address">Address: </label>
+        <em>Required</em>
+        <input formControlName="address" id="address" type="text"/>
+      </div>
+      <div class="form-group" [ngClass]="{'error':!validateForm()}">
+        <label for="city">City: </label>
+        <em>Required</em>
+        <input formControlName="city" id="city" type="text"/>
+      </div>
+      <div class="form-group" [ngClass]="{'error':validateForm()}">
+        <label for="country">Country: </label>
+        <em>Required</em>
+        <input formControlName="country" id="country" type="text"/>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+    <button type="button" class="btn btn-default" (click)="cancel(eventForm)">Cancel</button>
+  </form>
+</div>

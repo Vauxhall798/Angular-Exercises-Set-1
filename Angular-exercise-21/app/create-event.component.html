@@ -1,0 +1,39 @@
+<div>
+  <form  #eventForm="ngForm" (ngSubmit)="saveEvent(eventForm.value)">
+    <div class="form-group" [ngClass]="{'error': eventForm.controls.name?.invalid && eventForm.controls.name?.touched}">
+      <label for="event-name">Event Name: </label>
+      <input (ngModel)="name" name="name" id="event-name" type="text" required/>
+      <em *ngIf="eventForm.controls.name?.invalid && eventForm.controls.name?.touched">Required</em>
+    </div>
+    <div class="form-group" [ngClass]="{'error': eventForm.controls.date?.invalid && eventForm.controls.date?.touched}">
+      <label for="date">Date: </label>
+      <input (ngModel)="date" name="date" id="date" type="text" required/>
+      <em *ngIf="eventForm.controls.date?.invalid && eventForm.controls.date?.touched">Required</em>
+    </div>
+    <div class="form-group" [ngClass]="{'error': eventForm.controls.time?.invalid && eventForm.controls.time?.touched}">
+      <label for="time">Time: </label>
+      <input (ngModel)="time" name="time"  id="time" type="text" required/>
+      <em *ngIf="eventForm.controls.time?.invalid && eventForm.controls.time?.touched">Required</em>
+    </div>
+    <div ngModelGroup="location">
+      <div class="form-group" [ngClass]="{'error': eventForm.controls.location?.controls.address.invalid && eventForm.controls.location?.controls.address.touched}">
+        <label for="address">Address: </label>
+        <input (ngModel)="address" name="address" id="address" type="text" required/>
+        <em *ngIf="eventForm.controls.location?.controls.address.invalid && eventForm.controls.location?.controls.address.touched">Required</em>
+      </div>
+      <div class="form-group" [ngClass]="{'error': eventForm.controls.location?.controls.city.invalid && eventForm.controls.location?.controls.city.touched}">
+        <label for="city">City: </label>
+        <input (ngModel)="city" name="city"  id="city" type="text" required/>
+        <em *ngIf="eventForm.controls.location?.controls.city.invalid && eventForm.controls.location?.controls.city.touched">Required</em>
+      </div>
+      <div class="form-group" [ngClass]="{'error': eventForm.controls.location?.controls.country.invalid && eventForm.controls.location?.controls.country.touched}">
+        <label for="country">Country: </label>
+        <input (ngModel)="country" name="country" id="country" type="text" required pattern="[A-Z]{2}"/>
+        <em *ngIf="eventForm.controls.location?.controls.country.errors?.required && eventForm.controls.location?.controls.country.touched">Required</em>
+        <em *ngIf="eventForm.controls.location?.controls.country.value && eventForm.controls.location?.controls.country.errors?.pattern && eventForm.controls.location?.controls.country.touched">Must be a two-letter country code</em>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="eventForm.invalid">Save</button>
+    <button type="button" class="btn btn-default" (click)="cancel(eventForm)">Cancel</button>
+  </form>
+</div>
