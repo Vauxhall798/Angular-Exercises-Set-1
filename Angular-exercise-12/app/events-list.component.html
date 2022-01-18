@@ -1,0 +1,18 @@
+<div>
+  <div class="legend">
+    <span style="color:green">In Person</span> <span style="color:red">Online</span> <span style="color:#aaa">TBD</span>
+  </div>
+  <div *ngFor="let event of events" class="well hoverwell thumbnail">
+    <h2 [ngStyle]="getTitleStyle(event.format)">{{event.name}}</h2>
+    <div>Date: {{event.date}}</div>
+    <div>Time: {{event.time}}</div>
+    <div *ngIf="event.location">
+      <span>Location: {{event?.location?.address}}</span>
+      <span class="pad-left">{{event?.location?.city}}, {{event?.location?.country}}</span>
+    </div>
+    <div *ngIf="event.onlineUrl">
+      Online URL: {{event?.onlineUrl}}
+    </div>
+  </div>
+
+</div>
